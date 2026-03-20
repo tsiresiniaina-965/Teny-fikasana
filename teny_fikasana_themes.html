@@ -1,0 +1,1920 @@
+<!DOCTYPE html>
+<html lang="mg">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Teny Fikasana — Baiboly Masina </title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Lato:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+/* ══════════════════════════════════════
+   ROOT & RESET
+══════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'EB Garamond',Georgia,serif;
+  background:#060b14;
+  color:#e8e0d0;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ══════════════════════════════════════
+   THEME COLOUR TOKENS — each theme gets its own palette
+══════════════════════════════════════ */
+:root{
+  --theme-accent:#4fc3f7;
+  --theme-glow:rgba(79,195,247,0.18);
+  --theme-border:rgba(79,195,247,0.3);
+  --theme-bg1:#060f1a;
+  --theme-bg2:#0a1626;
+  --theme-num:#4fc3f7;
+  --theme-heading:#87CEEB;
+}
+body.theme-fitiavana{
+  --theme-accent:#f06292;
+  --theme-glow:rgba(240,98,146,0.16);
+  --theme-border:rgba(240,98,146,0.32);
+  --theme-bg1:#140a10;
+  --theme-bg2:#1e0f18;
+  --theme-num:#f06292;
+  --theme-heading:#f8bbd0;
+}
+body.theme-fanantenana{
+  --theme-accent:#66bb6a;
+  --theme-glow:rgba(102,187,106,0.15);
+  --theme-border:rgba(102,187,106,0.32);
+  --theme-bg1:#081408;
+  --theme-bg2:#0f1e10;
+  --theme-num:#66bb6a;
+  --theme-heading:#a5d6a7;
+}
+body.theme-herimpo{
+  --theme-accent:#ffa726;
+  --theme-glow:rgba(255,167,38,0.15);
+  --theme-border:rgba(255,167,38,0.32);
+  --theme-bg1:#140c00;
+  --theme-bg2:#1e1400;
+  --theme-num:#ffa726;
+  --theme-heading:#ffcc80;
+}
+body.theme-fitsaharana{
+  --theme-accent:#ce93d8;
+  --theme-glow:rgba(206,147,216,0.15);
+  --theme-border:rgba(206,147,216,0.32);
+  --theme-bg1:#0e0814;
+  --theme-bg2:#180e20;
+  --theme-num:#ce93d8;
+  --theme-heading:#e1bee7;
+}
+body.theme-vavaka{
+  --theme-accent:#4db6ac;
+  --theme-glow:rgba(77,182,172,0.15);
+  --theme-border:rgba(77,182,172,0.32);
+  --theme-bg1:#04100e;
+  --theme-bg2:#081a18;
+  --theme-num:#4db6ac;
+  --theme-heading:#80cbc4;
+}
+body.theme-fisaorana{
+  --theme-accent:#ffb74d;
+  --theme-glow:rgba(255,183,77,0.15);
+  --theme-border:rgba(255,183,77,0.32);
+  --theme-bg1:#140a00;
+  --theme-bg2:#1e1200;
+  --theme-num:#ffb74d;
+  --theme-heading:#ffe0b2;
+}
+
+body{background:var(--theme-bg1)}
+
+/* ══════════════════════════════════════
+   ANIMATED BACKGROUND PARTICLES
+══════════════════════════════════════ */
+#canvas-bg{
+  position:fixed;inset:0;
+  pointer-events:none;z-index:0;
+  opacity:0.45;
+}
+
+/* ══════════════════════════════════════
+   HERO HEADER
+══════════════════════════════════════ */
+.site-header{
+  position:relative;z-index:10;
+  text-align:center;
+  padding:60px 20px 40px;
+}
+.site-header .halo{
+  display:inline-block;
+  font-size:3.2rem;
+  animation:haloPulse 4s ease-in-out infinite;
+  filter:drop-shadow(0 0 18px var(--theme-accent));
+}
+@keyframes haloPulse{
+  0%,100%{filter:drop-shadow(0 0 10px var(--theme-accent));}
+  50%{filter:drop-shadow(0 0 40px var(--theme-accent)) drop-shadow(0 0 80px var(--theme-glow));}
+}
+.site-header h1{
+  font-family:'Cinzel',serif;
+  font-size:clamp(1.8rem,5vw,3.6rem);
+  font-weight:700;
+  color:var(--theme-heading);
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  margin:12px 0 6px;
+  transition:color 0.6s;
+}
+.site-header p{
+  font-style:italic;
+  font-size:1.1rem;
+  color:rgba(232,224,208,0.5);
+  letter-spacing:0.1em;
+}
+.ornament-line{
+  display:flex;align-items:center;gap:14px;
+  justify-content:center;margin:20px auto 0;max-width:360px;
+}
+.ornament-line::before,.ornament-line::after{
+  content:'';flex:1;height:1px;
+  background:linear-gradient(90deg,transparent,var(--theme-accent),transparent);
+  transition:background 0.6s;
+}
+.ornament-line span{color:var(--theme-accent);font-size:1.3rem;transition:color 0.6s}
+
+/* ══════════════════════════════════════
+   THEME NAVIGATION TABS
+══════════════════════════════════════ */
+.nav-wrapper{
+  position:sticky;top:0;z-index:100;
+  background:rgba(6,11,20,0.92);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  padding:0 16px;
+}
+.nav-tabs{
+  display:flex;overflow-x:auto;gap:4px;
+  max-width:1200px;margin:0 auto;
+  scrollbar-width:none;
+  padding:10px 0;
+}
+.nav-tabs::-webkit-scrollbar{display:none}
+.tab-btn{
+  display:flex;align-items:center;gap:8px;
+  padding:10px 20px;
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:40px;
+  background:rgba(255,255,255,0.04);
+  color:rgba(232,224,208,0.6);
+  font-family:'Cinzel',serif;
+  font-size:0.75rem;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  cursor:pointer;
+  white-space:nowrap;
+  transition:all 0.3s;
+  flex-shrink:0;
+}
+.tab-btn .tab-icon{font-size:1.1rem}
+.tab-btn:hover{
+  color:#fff;
+  background:rgba(255,255,255,0.09);
+  border-color:rgba(255,255,255,0.25);
+  transform:translateY(-1px);
+}
+.tab-btn.active{
+  background:var(--theme-glow);
+  border-color:var(--theme-accent);
+  color:var(--theme-accent);
+  box-shadow:0 0 18px var(--theme-glow);
+}
+
+/* Tab-specific accent colours for inactive states */
+.tab-btn[data-theme="fitiavana"]     { --t:#f06292 }
+.tab-btn[data-theme="fanantenana"]   { --t:#66bb6a }
+.tab-btn[data-theme="herimpo"]       { --t:#ffa726 }
+.tab-btn[data-theme="fitsaharana"]   { --t:#ce93d8 }
+.tab-btn[data-theme="vavaka"]        { --t:#4db6ac }
+.tab-btn[data-theme="fisaorana"]     { --t:#ffb74d }
+
+.tab-btn[data-theme] .tab-icon{color:var(--t)}
+
+/* ══════════════════════════════════════
+   THEME SECTION
+══════════════════════════════════════ */
+.theme-section{
+  display:none;
+  position:relative;z-index:1;
+  max-width:1200px;margin:0 auto;
+  padding:48px 20px 80px;
+  animation:sectionIn 0.5s cubic-bezier(.22,1,.36,1);
+}
+.theme-section.active{display:block}
+@keyframes sectionIn{
+  from{opacity:0;transform:translateY(22px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.theme-title-block{
+  text-align:center;
+  margin-bottom:44px;
+}
+.theme-title-block .big-icon{
+  font-size:3.8rem;
+  filter:drop-shadow(0 0 20px var(--theme-accent));
+  display:block;margin-bottom:14px;
+}
+.theme-title-block h2{
+  font-family:'Cinzel',serif;
+  font-size:clamp(1.5rem,4vw,2.6rem);
+  font-weight:600;
+  color:var(--theme-heading);
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  margin-bottom:8px;
+}
+.theme-title-block .subtitle{
+  font-style:italic;
+  color:rgba(232,224,208,0.5);
+  font-size:1rem;
+  letter-spacing:0.06em;
+}
+.theme-count{
+  display:inline-block;
+  margin-top:12px;
+  padding:4px 18px;
+  border:1px solid var(--theme-border);
+  border-radius:20px;
+  font-family:'Cinzel',serif;
+  font-size:0.72rem;
+  letter-spacing:0.15em;
+  color:var(--theme-accent);
+  text-transform:uppercase;
+}
+
+/* ══════════════════════════════════════
+   VERSE GRID
+══════════════════════════════════════ */
+.verse-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(310px,1fr));
+  gap:24px;
+}
+.verse-card{
+  background:linear-gradient(145deg,var(--theme-bg2),var(--theme-bg1));
+  border:1px solid var(--theme-border);
+  border-radius:6px;
+  padding:28px 26px 24px;
+  position:relative;
+  overflow:hidden;
+  cursor:default;
+  opacity:0;
+  transition:transform 0.35s,box-shadow 0.35s,border-color 0.35s,opacity 0.4s;
+}
+.verse-card.visible{opacity:1}
+.verse-card::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--theme-accent),transparent);
+  opacity:0;transition:opacity 0.3s;
+}
+.verse-card::after{
+  content:'';
+  position:absolute;inset:0;
+  background:radial-gradient(circle at 70% 30%,var(--theme-glow),transparent 65%);
+  opacity:0;transition:opacity 0.35s;pointer-events:none;
+}
+.verse-card:hover{
+  transform:translateY(-6px) scale(1.01);
+  box-shadow:0 20px 50px rgba(0,0,0,0.55),0 0 30px var(--theme-glow);
+  border-color:var(--theme-accent);
+}
+.verse-card:hover::before{opacity:1}
+.verse-card:hover::after{opacity:1}
+
+.v-num{
+  font-family:'Cinzel',serif;
+  font-size:0.68rem;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color:var(--theme-num);
+  margin-bottom:13px;
+  display:flex;align-items:center;gap:10px;
+  transition:color 0.6s;
+}
+.v-num::after{content:'';flex:1;height:1px;background:var(--theme-border)}
+
+.v-text{
+  font-size:1.05rem;
+  font-style:italic;
+  line-height:1.8;
+  color:#e8e0d0;
+  margin-bottom:16px;
+  font-weight:400;
+}
+
+.v-ref{
+  font-family:'Cinzel',serif;
+  font-size:0.78rem;
+  color:var(--theme-heading);
+  text-align:right;
+  letter-spacing:0.07em;
+  transition:color 0.6s;
+}
+
+/* Wide "featured" card */
+.verse-card.wide{grid-column:span 2}
+@media(max-width:680px){.verse-card.wide{grid-column:span 1}}
+
+/* Big decorative quote mark */
+.deco-q{
+  position:absolute;bottom:6px;left:16px;
+  font-size:5rem;line-height:1;
+  color:var(--theme-border);
+  font-family:'EB Garamond',serif;
+  pointer-events:none;user-select:none;
+  transition:color 0.6s;
+}
+
+/* ══════════════════════════════════════
+   PROGRESS BAR (scroll)
+══════════════════════════════════════ */
+#progress-bar{
+  position:fixed;top:0;left:0;
+  height:3px;width:0%;
+  background:linear-gradient(90deg,var(--theme-accent),var(--theme-heading));
+  z-index:200;
+  transition:width 0.1s linear,background 0.6s;
+}
+
+/* ══════════════════════════════════════
+   BACK-TO-TOP
+══════════════════════════════════════ */
+#back-top{
+  position:fixed;bottom:28px;right:28px;
+  width:46px;height:46px;
+  border-radius:50%;
+  background:var(--theme-glow);
+  border:1px solid var(--theme-border);
+  color:var(--theme-accent);
+  font-size:1.3rem;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;z-index:150;
+  opacity:0;pointer-events:none;
+  transition:all 0.3s;
+  backdrop-filter:blur(8px);
+}
+#back-top.show{opacity:1;pointer-events:auto}
+#back-top:hover{transform:scale(1.15);box-shadow:0 0 20px var(--theme-glow)}
+
+/* ══════════════════════════════════════
+   FOOTER
+══════════════════════════════════════ */
+footer{
+  position:relative;z-index:1;
+  text-align:center;
+  padding:30px 20px 50px;
+  color:rgba(232,224,208,0.3);
+  font-size:0.88rem;
+  letter-spacing:0.07em;
+  border-top:1px solid rgba(255,255,255,0.06);
+}
+footer span{color:var(--theme-accent);transition:color 0.6s}
+
+/* ══════════════════════════════════════
+   TRANSITION OVERLAY
+══════════════════════════════════════ */
+#theme-overlay{
+  position:fixed;inset:0;
+  background:var(--theme-bg1);
+  z-index:999;
+  pointer-events:none;
+  opacity:0;
+  transition:opacity 0.25s;
+}
+#theme-overlay.flash{opacity:0.5}
+</style>
+</head>
+<body class="theme-fitiavana">
+
+<div id="progress-bar"></div>
+<div id="theme-overlay"></div>
+<canvas id="canvas-bg"></canvas>
+
+<!-- ══ HERO HEADER ══ -->
+<header class="site-header">
+  <span class="halo">✝</span>
+  <h1>Teny Fikasana</h1>
+  <p>Ao amin'ny Baiboly Masina</p>
+  <p>Sakafom-panahy</p>
+  <div class="ornament-line"><span>❧</span></div>
+</header>
+
+<!-- ══ NAVIGATION ══ -->
+<nav class="nav-wrapper">
+  <div class="nav-tabs">
+    <button class="tab-btn active" data-theme="fitiavana">
+      <span class="tab-icon">❤️</span> Fitiavana
+    </button>
+    <button class="tab-btn" data-theme="fanantenana">
+      <span class="tab-icon">🌿</span> Fanantenana
+    </button>
+    <button class="tab-btn" data-theme="herimpo">
+      <span class="tab-icon">🔥</span> Herim-po
+    </button>
+    <button class="tab-btn" data-theme="fitsaharana">
+      <span class="tab-icon">🕊️</span> Fitsaharana
+    </button>
+    <button class="tab-btn" data-theme="vavaka">
+      <span class="tab-icon">🙏</span> Vavaka
+    </button>
+    <button class="tab-btn" data-theme="fisaorana">
+      <span class="tab-icon">🌟</span> Fisaorana
+    </button>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════
+     THÈME 1 — FITIAVANA (Rose/Pink)
+══════════════════════════════════════════ -->
+<section class="theme-section active" id="sec-fitiavana">
+  <div class="theme-title-block">
+    <span class="big-icon">❤️</span>
+    <h2>Fitiavana</h2>
+    <p class="subtitle">Ny fitiavan'Andriamanitra sy ny namana</p>
+    <span class="theme-count">Versé 30</span>
+  </div>
+  <div class="verse-grid">
+
+    <div class="verse-card wide">
+      <div class="v-num">Versé 01</div>
+      <p class="v-text">"Fa toy izao no nitiavan'Andriamanitra izao tontolo izao: nomeny ny Zanani-lahy Tokana, mba tsy ho very izay rehetra mino Azy, fa hanana fiainana mandrakizay."</p>
+      <div class="v-ref">Jaona 3:16</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 02</div>
+      <p class="v-text">"Ny fitiava mahari-po sady mora fanahy; ny fitiavana tsy mialonalona, tsy mirehareha, tsy mieboebo."</p>
+      <div class="v-ref">1 Korintiana 13:4</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 03</div>
+      <p class="v-text">"Ny fitiavana tsy mba mety levona. Fa na faminaniana aza dia ho foana; na fiteny amin'ny teny tsy fantatra aza dia hitsahatra; na fahalalana aza dia ho foana."</p>
+      <div class="v-ref">1 Korintiana 13:8</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 04</div>
+      <p class="v-text">"Ary ankehitriny dia ireto telo ireto no mitoetra: ny finoana, ny fanantenana ary ny fitiavana; fa ny fitiavana no lehibe indrindra amin'ireo."</p>
+      <div class="v-ref">1 Korintiana 13:13</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 05</div>
+      <p class="v-text">"Ny fitiavana tsy manisy ratsy ny namana; koa dia ny fitiavana no fahatanterahana ny lalàna."</p>
+      <div class="v-ref">Romana 13:10</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 06</div>
+      <p class="v-text">"Isika tia Azy satria Izy efa tia antsika aloha."</p>
+      <div class="v-ref">1 Jaona 4:19</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 07</div>
+      <p class="v-text">"Andriamanitra dia fitiavana; ary izay mitoetra amin'ny fitiavana dia mitoetra ao amin'Andriamanitra, ary Andriamanitra ao aminy."</p>
+      <div class="v-ref">1 Jaona 4:16</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 08</div>
+      <p class="v-text">"Tsy misy manana fitiavana lehibe indrindra noho izao, dia ny manolotra ny ainy hamonjy ny sakaizany."</p>
+      <div class="v-ref">Jaona 15:13</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 09</div>
+      <p class="v-text">"Izay tena sakaiza tokoa dia tia amin'ny andro rehetra; Sady miseho ho rahalahy hamonjy amin'ny fahoriana."</p>
+      <div class="v-ref">Ohabolana 17:17</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 10</div>
+      <p class="v-text">"Tiava ny Tompo Andriamanitrao amin'ny fonao rehetra sy ny fanahinao rehetra ary ny sainao rehetra."</p>
+      <div class="v-ref">Matio 22:37</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 11</div>
+      <p class="v-text">"Tiava ny namanao tahaka ny tenanao."</p>
+      <div class="v-ref">Matio 22:39</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 12</div>
+      <p class="v-text">"Fa Andriamanitra mampiseho ny fitiavany antsika, satria fony mbola mpanota isika, Kristy maty hamonjy antsika."</p>
+      <div class="v-ref">Romana 5:8</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 13</div>
+      <p class="v-text">"Aza avela ny fitiavana sy ny fahamarinana handao anao; fehézo azy amin'ny vozonao, soraty amin'ny fafanam-ponao."</p>
+      <div class="v-ref">Ohabolana 3:3</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 14</div>
+      <p class="v-text">"Ny lalàna vaovao no omeko anareo, dia ny mifankatia; tahaka ny nitiavako anareo no mba tia ny tena anareo koa."</p>
+      <div class="v-ref">Jaona 13:34</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 15</div>
+      <p class="v-text">"Ny fitiavana tsy mba mitady ny azy; tsy mba mora tezitra; tsy manisa ny ratsy nataon'ny hafa."</p>
+      <div class="v-ref">1 Korintiana 13:5</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 16</div>
+      <p class="v-text">"Raha ny fahavalonao no noana, omeo hanina; raha mangetaheta izy, omeo hosotroina; fa amin'ny fanaovana izany dia hodoranao afo ny lohany."</p>
+      <div class="v-ref">Romana 12:20</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 17</div>
+      <p class="v-text">"Aoka ny fitiavana ho tsy mihatsaravelatsihy. Ataovy mamelo ny tsara; manamora ny ratsy."</p>
+      <div class="v-ref">Romana 12:9</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 18</div>
+      <p class="v-text">"Indrindra fa aoka ho mifanatrika ny fitiavanareo; fa ny fitiavana mahalala mamafa ny ota maro."</p>
+      <div class="v-ref">1 Petera 4:8</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 19</div>
+      <p class="v-text">"Fa iza no hampisaraka antsika amin'ny fitiavan'i Kristy? Fahoriana, sa alahelonalahelo, sa fanenjehana, sa hanoanana, sa fitanjahana, sa loza, sa sabatra?"</p>
+      <div class="v-ref">Romana 8:35</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 20</div>
+      <p class="v-text">"Izaho matoky fa na fahafatesana, na fiainana, na anjely, na fanapahana, na zavatra ankehitriny, na zavatra ho avy, na hery, na avo, na iva, na zavatra voahary hafa, dia tsy hahazo hampisaraka antsika amin'ny fitiavan'Andriamanitra izay ao amin'i Kristy Jesosy Tompontsika."</p>
+      <div class="v-ref">Romana 8:38–39</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 21</div>
+      <p class="v-text">"Tiava ny fahavalonao; manaova soa ho an'izay mankahala anao."</p>
+      <div class="v-ref">Lioka 6:27</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 22</div>
+      <p class="v-text">"Ny fitiavana maharita hatramin'ny farany."</p>
+      <div class="v-ref">1 Korintiana 13:7</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 23</div>
+      <p class="v-text">"Ary nony hitan'ny Tompo azy, dia onena azy Izy ka niteny taminy hoe: Aza mitomany."</p>
+      <div class="v-ref">Lioka 7:13</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 24</div>
+      <p class="v-text">"Ny lanjan'ny fitiavana dia toy ny tafiotra mafy; ny rano tsy mahavita mamotika azy, na ny renirano tsy mahafafa azy."</p>
+      <div class="v-ref">Fihirana 8:7</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 25</div>
+      <p class="v-text">"Izay tsy tia dia tsy mahalala an'Andriamanitra; fa Andriamanitra dia fitiavana."</p>
+      <div class="v-ref">1 Jaona 4:8</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 26</div>
+      <p class="v-text">"Tsy matahotra ny fitiavana; fa ny fitiavana lavorary dia mamoaka ny tahotra."</p>
+      <div class="v-ref">1 Jaona 4:18</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 27</div>
+      <p class="v-text">"Mihainoa, ry Isiraely: Jehovah Andriamanitrantsika, dia Jehovah iray ihany. Ary tiava an'i Jehovah Andriamanitrao amin'ny fonao rehetra."</p>
+      <div class="v-ref">Deoteronomy 6:4–5</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 28</div>
+      <p class="v-text">"Indrisy! ny fitiavana lehibe ananany! Tsy nisy zanaka nataon'ny olona loza noho izany."</p>
+      <div class="v-ref">Efesiana 3:19</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 29</div>
+      <p class="v-text">"Ary mifankatia toy ny nanitiavako anareo hoy Jesosy. Amin'izany no hahafantaran'ny olona rehetra fa mpianatro ianareo."</p>
+      <div class="v-ref">Jaona 13:35</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card wide">
+      <div class="v-num">Versé 30</div>
+      <p class="v-text">"Raha miteny amin'ny fiteny rehetra ety an-tany sy any an-danitra aza aho, nefa tsy manana fitiavana, dia tonga vara fiantsoana sa kipantsona maneno aho."</p>
+      <div class="v-ref">1 Korintiana 13:1</div>
+      <span class="deco-q">"</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     THÈME 2 — FANANTENANA (Vert)
+══════════════════════════════════════════ -->
+<section class="theme-section" id="sec-fanantenana">
+  <div class="theme-title-block">
+    <span class="big-icon">🌿</span>
+    <h2>Fanantenana</h2>
+    <p class="subtitle">Ny fanantenana ao amin'Andriamanitra</p>
+    <span class="theme-count">Versé 30</span>
+  </div>
+  <div class="verse-grid">
+
+    <div class="verse-card wide">
+      <div class="v-num">Versé 01</div>
+      <p class="v-text">"Fa izaho mahalala ny hevitra izay nokasaiko ho anareo, hoy Jehovah, dia hevitra fiadanana fa tsy loza, mba hanomezana anareo farany soa sy fanantenana."</p>
+      <div class="v-ref">Jeremia 29:11</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 02</div>
+      <p class="v-text">"Koa mifohaza, Izy ô! Manome hery ny ory; mampahery ny kivy."</p>
+      <div class="v-ref">Isaia 40:29</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 03</div>
+      <p class="v-text">"Izay miandry an'i Jehovah kosa no hanova hery; hanangana elatra tahaka ny voromahery izy."</p>
+      <div class="v-ref">Isaia 40:31</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 04</div>
+      <p class="v-text">"Fa ny fanantenantsika an'Andriamanitra no mahatonga antsika ho finaritra."</p>
+      <div class="v-ref">Romana 5:2</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 05</div>
+      <p class="v-text">"Ny fanantenana tsy mahamenatra, satria ny fitiavan'Andriamanitra dia naidina tao am-pontsika."</p>
+      <div class="v-ref">Romana 5:5</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 06</div>
+      <p class="v-text">"Ary Andriamanitr'ny fanantenana anie hameno anareo amin'ny fifaliana sy ny fiadanana rehetra amin'ny finoanareo."</p>
+      <div class="v-ref">Romana 15:13</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 07</div>
+      <p class="v-text">"Fa ny fanantenana ny tsy hita no fanantenana; fa ny zavatra hita, nahoana no mbola antenaina?"</p>
+      <div class="v-ref">Romana 8:24</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 08</div>
+      <p class="v-text">"Miandrasa ny Tompo; matahory, ka hatanjaho ny fonao; eny, miandrasa ny Tompo."</p>
+      <div class="v-ref">Salamo 27:14</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 09</div>
+      <p class="v-text">"Ny fierena no tenako; aoka ho mandry sy ho finaritra aho!"</p>
+      <div class="v-ref">Salamo 116:7</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 10</div>
+      <p class="v-text">"Fa ny fahoriantsika amin'izao dia maivana sady maharitra kelikely ihany, ka miasa amintsika laza mandrakizay tsy manam-paharoa amin'ny lanjany."</p>
+      <div class="v-ref">2 Korintiana 4:17</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 11</div>
+      <p class="v-text">"Ny fahoriana mahatonga faharetana; ary ny faharetana mahatonga toetry ny efa voazaha toetra."</p>
+      <div class="v-ref">Romana 5:3–4</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 12</div>
+      <p class="v-text">"Ny Tompo tsy tratra ela ny teny fikasany toy ny hevitry ny sasany; fa maharitra aminareo Izy."</p>
+      <div class="v-ref">2 Petera 3:9</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 13</div>
+      <p class="v-text">"Sarotra aminy fa tsy voatery; very hevitra fa tsy kivy."</p>
+      <div class="v-ref">2 Korintiana 4:8</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 14</div>
+      <p class="v-text">"Ny fifaliana no herinay."</p>
+      <div class="v-ref">Nehemia 8:10</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 15</div>
+      <p class="v-text">"Lehibe ny fahamarinan'ny Tompo; vaovao ny famindram-pony isan'andro; lehibe ny fahamarinany."</p>
+      <div class="v-ref">Fitomaniana 3:23</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 16</div>
+      <p class="v-text">"Fa mino aho fa hahita ny haben'ny Tompo ety amin'ny tanin'ny velona aho."</p>
+      <div class="v-ref">Salamo 27:13</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 17</div>
+      <p class="v-text">"Fa ny Tompo dia tsy handao an'i Isiraely; Ary ny lovany tsy hafoiny."</p>
+      <div class="v-ref">Salamo 94:14</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 18</div>
+      <p class="v-text">"Ny fanantenana ny tsara no ankasitrahan'ny fo; fa ny fivezivezena ny faniriana dia mahatonga otrika."</p>
+      <div class="v-ref">Ohabolana 13:12</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 19</div>
+      <p class="v-text">"Ary Izy izay nanomboka ny asa tsara ao anatinareo no hahatanteraka azy mandra-pihavin'ny andron'i Kristy Jesosy."</p>
+      <div class="v-ref">Filipiana 1:6</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 20</div>
+      <p class="v-text">"Ary ho fanahy ny fanantenantsika tsy miova, mafy sy azo antoka, ka mandalo hatrany anaty ao amin'ny rindrin-damba."</p>
+      <div class="v-ref">Hebreo 6:19</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 21</div>
+      <p class="v-text">"Fa mino aho fa na ny fahafatesana, na ny fiainana dia tsy hahazo hampisaraka antsika amin'ny fitiavan'Andriamanitra."</p>
+      <div class="v-ref">Romana 8:38</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 22</div>
+      <p class="v-text">"Ny Tompo no heriko sy feoku; ary efa lasa famonjena ahy Izy."</p>
+      <div class="v-ref">Eksodesy 15:2</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 23</div>
+      <p class="v-text">"Ny fanantenana ny salama no mahafaly ny fo; fa ny faniriana tsy tanteraka mahasiantosa ny fanahy."</p>
+      <div class="v-ref">Ohabolana 13:12</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 24</div>
+      <p class="v-text">"Ny Tompo dia mpiaro ahy; inona no hatahotra?"</p>
+      <div class="v-ref">Salamo 118:6</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 25</div>
+      <p class="v-text">"Faly amin'ny fanantenana; maharitra amin'ny fahoriana; mazoto amin'ny vavaka."</p>
+      <div class="v-ref">Romana 12:12</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 26</div>
+      <p class="v-text">"Ary ho hitantsika ny hasambarana amin'ny andro fahoriana, satria nomena antsika ny fanantenana."</p>
+      <div class="v-ref">Salamo 31:24</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 27</div>
+      <p class="v-text">"Matanjaha, ary aoka ho matanjaka ny fonao, dia ianareo rehetra izay manantena an'i Jehovah."</p>
+      <div class="v-ref">Salamo 31:24</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 28</div>
+      <p class="v-text">"Mifalia amin'ny fanantenana; maharitra amin'ny fahoriana; mangataka amin'ny vavaka lalandava."</p>
+      <div class="v-ref">Romana 12:12</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 29</div>
+      <p class="v-text">"Indrisy! Ny fanantenana no mitondra hery; ary izay manantena tsy ho menatra."</p>
+      <div class="v-ref">Isaia 49:23</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card wide">
+      <div class="v-num">Versé 30</div>
+      <p class="v-text">"Fa izany no antony tsy ho kivy: na dia levona aza ny ain'ny tenany ivelany, ny ao anatiny kosa dia havaozina isan'andro. Fa ny fahoriantsika amin'izao dia maivana sady maharitra kelikely ihany."</p>
+      <div class="v-ref">2 Korintiana 4:16–17</div>
+      <span class="deco-q">"</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     THÈME 3 — HERIM-PO (Orange)
+══════════════════════════════════════════ -->
+<section class="theme-section" id="sec-herimpo">
+  <div class="theme-title-block">
+    <span class="big-icon">🔥</span>
+    <h2>Herim-po</h2>
+    <p class="subtitle">Ny herim-po sy ny fahasahiana avy amin'Andriamanitra</p>
+    <span class="theme-count">Versé 30</span>
+  </div>
+  <div class="verse-grid">
+
+    <div class="verse-card wide">
+      <div class="v-num">Versé 01</div>
+      <p class="v-text">"Mahereza, ka matanjaha; aza matahotra, aza manahy, fa Jehovah Andriamanitrao no momba anao na aiza na aiza ianao no mandeha."</p>
+      <div class="v-ref">Josoa 1:9</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 02</div>
+      <p class="v-text">"Azoko atao ny zavatra rehetra ao amin'i Kristy Izay mampahery ahy."</p>
+      <div class="v-ref">Filipiana 4:13</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 03</div>
+      <p class="v-text">"Fa Andriamanitra tsy nanome antsika fanahy fahorana, fa hery sy fitiavana ary saina matotra."</p>
+      <div class="v-ref">2 Timoty 1:7</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 04</div>
+      <p class="v-text">"Aza matahotra, fa eo anilao Aho; aza miherikerika, fa Izaho no Andriamanitrao."</p>
+      <div class="v-ref">Isaia 41:10</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 05</div>
+      <p class="v-text">"Ny Tompo no heriko sy fiarovana, ary efa lasa famonjena ahy Izy."</p>
+      <div class="v-ref">Eksodesy 15:2</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 06</div>
+      <p class="v-text">"Mahereza sy matanjaha; aza matahotra azy; fa Jehovah Andriamanitrao no momba anao."</p>
+      <div class="v-ref">Deoteronomy 31:6</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 07</div>
+      <p class="v-text">"Jehovah no fahazavana sy famonjena ahy; iza no hatahorako? Jehovah no fiarovana ny aiko; iza no hangovitako?"</p>
+      <div class="v-ref">Salamo 27:1</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 08</div>
+      <p class="v-text">"Ny Tompo dia eo anilako, ka tsy hatahotra aho; inona no azon'ny olona atao amiko?"</p>
+      <div class="v-ref">Salamo 118:6</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 09</div>
+      <p class="v-text">"Raha mandalo amin'ny rano ianao, dia homba anao Aho; ary raha mandalo amin'ny onjan-drano, tsy hanotricanao izy."</p>
+      <div class="v-ref">Isaia 43:2</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 10</div>
+      <p class="v-text">"Ny fahareson'ny fiainana dia tsy tombontsoa; izay mandresy no hanana fiainana mandrakizay."</p>
+      <div class="v-ref">Apokalypsy 2:7</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 11</div>
+      <p class="v-text">"Miomana toy ny miaramila tsara; mahereza ao amin'ny fahasoavana izay ao amin'i Kristy Jesosy."</p>
+      <div class="v-ref">2 Timoty 2:1</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 12</div>
+      <p class="v-text">"Mitorohana ao amin'Andriamanitra lalandava, ry olona ô; andrianareo Azy; Andriamanitra no fierenatsika."</p>
+      <div class="v-ref">Salamo 62:8</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 13</div>
+      <p class="v-text">"Raha Andriamanitra ho amin'isika, iza no hanohitra antsika?"</p>
+      <div class="v-ref">Romana 8:31</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 14</div>
+      <p class="v-text">"Miomana mafy hanova ny lalana amin'ny tontolo; mahereza amin'ny olana."</p>
+      <div class="v-ref">Efesiana 6:13</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 15</div>
+      <p class="v-text">"Ny finoana no fiarovana amin'ny zava-tsarotra rehetra."</p>
+      <div class="v-ref">1 Jaona 5:4</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 16</div>
+      <p class="v-text">"Ny mino rehetra no mandray hery; satria ny Tompo no hanome fo mahery."</p>
+      <div class="v-ref">Isaia 40:29</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 17</div>
+      <p class="v-text">"Manehoa herim-po, aza matahotra; fa Andriamanitra no momba antsika."</p>
+      <div class="v-ref">Salamo 46:11</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 18</div>
+      <p class="v-text">"Izaho no lalana sy fahamarinana ary fiainana; tsy misy olona mankany amin'ny Ray, afa-tsy amin'ny alalako."</p>
+      <div class="v-ref">Jaona 14:6</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 19</div>
+      <p class="v-text">"Amin'ny anaran'i Jesosy dia ondrika ny lohaliko rehetra na any an-danitra, na ety an-tany, na any ambanin'ny tany."</p>
+      <div class="v-ref">Filipiana 2:10</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 20</div>
+      <p class="v-text">"Mahereza sy matanjaha foana, fa Jehovah no miaraka amin'ny tsara."</p>
+      <div class="v-ref">2 Tantara 19:11</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 21</div>
+      <p class="v-text">"Izay mijorojoro amin'ny finoana no mafy; ary izay malemy fo no ho resy."</p>
+      <div class="v-ref">1 Korintiana 16:13</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 22</div>
+      <p class="v-text">"Ny faharesen'ny tontolo dia ny finoantsika."</p>
+      <div class="v-ref">1 Jaona 5:4</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 23</div>
+      <p class="v-text">"Mahereza, ka matanjaha ny fonao, ianareo rehetra izay manantena an'i Jehovah."</p>
+      <div class="v-ref">Salamo 31:24</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 24</div>
+      <p class="v-text">"Ny zava-tsarotra rehetra dia azo atrehina amin'ny alalan'i Kristy Izay mampahery antsika."</p>
+      <div class="v-ref">Filipiana 4:13</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 25</div>
+      <p class="v-text">"Aza matahotra, fa efa nanavotra anao Aho; efa niantso anao tamin'ny anaranao Aho; Ahy ianao."</p>
+      <div class="v-ref">Isaia 43:1</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 26</div>
+      <p class="v-text">"Ny tenin'Andriamanitra dia velona sy mahery."</p>
+      <div class="v-ref">Hebreo 4:12</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 27</div>
+      <p class="v-text">"Mahereza sy matanjaha; aza tahotra, aza manahy; fa Jehovah Andriamanitrao no momba anao."</p>
+      <div class="v-ref">Josoa 1:9</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 28</div>
+      <p class="v-text">"Ary hoy Izy tamiko: Ampy ho anao ny fahasoavako."</p>
+      <div class="v-ref">2 Korintiana 12:9</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 29</div>
+      <p class="v-text">"Manorena trano amin'ny vatolampy; aza mametraka azy amin'ny fasika."</p>
+      <div class="v-ref">Matio 7:24</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card wide">
+      <div class="v-num">Versé 30</div>
+      <p class="v-text">"Koa misantona amin'ny finoana ianareo, mitsangana tsara, mahery fo, mahereza ao amin'ny Tompo."</p>
+      <div class="v-ref">1 Korintiana 16:13</div>
+      <span class="deco-q">"</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     THÈME 4 — FITSAHARANA (Violet)
+══════════════════════════════════════════ -->
+<section class="theme-section" id="sec-fitsaharana">
+  <div class="theme-title-block">
+    <span class="big-icon">🕊️</span>
+    <h2>Fitsaharana</h2>
+    <p class="subtitle">Ny fiadanana sy fitsaharana avy amin'Andriamanitra</p>
+    <span class="theme-count">Versé 30</span>
+  </div>
+  <div class="verse-grid">
+
+    <div class="verse-card wide">
+      <div class="v-num">Versé 01</div>
+      <p class="v-text">"Mankanesa amiko, ianareo rehetra izay nisasatra sy mavesatra entana, ary Izaho hanome anareo fitsaharana."</p>
+      <div class="v-ref">Matio 11:28</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 02</div>
+      <p class="v-text">"Ny Tompo no Mpiandry ahy; tsy hanan-java-mahory aho."</p>
+      <div class="v-ref">Salamo 23:1</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 03</div>
+      <p class="v-text">"Mamandry ahy any an-tany maitso Izy; mitondra ahy eo amoron'ny rano fitsaharany Izy."</p>
+      <div class="v-ref">Salamo 23:2</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 04</div>
+      <p class="v-text">"Ary ny fiadanana momba an'Andriamanitra, izay mihoatra noho ny fahalalana rehetra, no hiaro ny fonareo sy ny hevitrareo ao amin'i Kristy Jesosy."</p>
+      <div class="v-ref">Filipiana 4:7</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 05</div>
+      <p class="v-text">"Ny olona mahatahiry an-tsaina no hotahinao amin'ny fiadanana tanteraka, satria matoky Anao izy."</p>
+      <div class="v-ref">Isaia 26:3</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 06</div>
+      <p class="v-text">"Fiadanana no avelako ho anareo; ny fiadanako no omeko anareo."</p>
+      <div class="v-ref">Jaona 14:27</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 07</div>
+      <p class="v-text">"Aoka ny fiadanana momba an'i Kristy no hanjaka ao am-ponareo."</p>
+      <div class="v-ref">Kolosiana 3:15</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 08</div>
+      <p class="v-text">"Fa amin'izany no itadinako an'Andriamanitra; amin'izany ihany no hanamaivanany ny entako."</p>
+      <div class="v-ref">Salamo 55:22</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 09</div>
+      <p class="v-text">"Toriany ny fiadanana manerana ny tany; mba ho tsara ny vokatry ny tany."</p>
+      <div class="v-ref">Salamo 85:8</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 10</div>
+      <p class="v-text">"Ataovy aminy toy ny entana ny fiahianao, ka Izy no hikarakara anao; tsy mba hamela ny marina hifindra Izy."</p>
+      <div class="v-ref">Salamo 55:22</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 11</div>
+      <p class="v-text">"Mitoera ao amiko, ary Izaho ao aminareo."</p>
+      <div class="v-ref">Jaona 15:4</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 12</div>
+      <p class="v-text">"Mifalia mandrakariva ao amin'ny Tompo; indro, lazaiko indray: mifalia."</p>
+      <div class="v-ref">Filipiana 4:4</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 13</div>
+      <p class="v-text">"Aza manahy na inona na inona, fa amin'ny zavatra rehetra, amin'ny fivavahana sy fifonana mbamin'ny fisaorana, no atorontoroninareo ny fangatahanareo amin'Andriamanitra."</p>
+      <div class="v-ref">Filipiana 4:6</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 14</div>
+      <p class="v-text">"Ny fiadanana nomeny antsika dia tsy toy ny fiadanana omen'izao tontolo izao."</p>
+      <div class="v-ref">Jaona 14:27</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 15</div>
+      <p class="v-text">"Tsy manahinahy na ahiahin'ny fo aho; matoky an'Andriamanitra aho ary matoky Anao koa."</p>
+      <div class="v-ref">Jaona 14:1</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 16</div>
+      <p class="v-text">"Mipetraha ao amin'ny fiarovany Izy; manao ny fitsaharany ao amin'ny tampon'ny Siona."</p>
+      <div class="v-ref">Salamo 132:14</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 17</div>
+      <p class="v-text">"Aoka ho fisy fiadanana ao amin'ny fonareo; aoka ny tenin'i Kristy hitoetra amin'ny fahafenoan'ny fahendrena."</p>
+      <div class="v-ref">Kolosiana 3:16</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 18</div>
+      <p class="v-text">"Ny fiadanana no lovana navelan'i Kristy ho antsika."</p>
+      <div class="v-ref">Jaona 16:33</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 19</div>
+      <p class="v-text">"Fa ny Fanahin'Andriamanitra dia fiadanana sy fiepeperana."</p>
+      <div class="v-ref">Galatiana 5:22</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 20</div>
+      <p class="v-text">"Ny fiadanana amin'Andriamanitra no voalohan'ny fiainana tsara."</p>
+      <div class="v-ref">Romana 5:1</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 21</div>
+      <p class="v-text">"Apetraho aminy ny entanareo rehetra, fa Izy mihevitra anareo."</p>
+      <div class="v-ref">1 Petera 5:7</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 22</div>
+      <p class="v-text">"Mahereza, aza matahotra; fa Izy tsy handao anao."</p>
+      <div class="v-ref">Hebreo 13:5</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 23</div>
+      <p class="v-text">"Ny Tompo ho ao amin'ny fitsaharany mandrakizay."</p>
+      <div class="v-ref">Salamo 132:14</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 24</div>
+      <p class="v-text">"Mandria ao amin'ny Tompo sy antenao Azy; aza matehotia noho izay manambady."</p>
+      <div class="v-ref">Salamo 37:7</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 25</div>
+      <p class="v-text">"Ny fitsaharana tena izy no ao amin'i Kristy irery ihany."</p>
+      <div class="v-ref">Matio 11:29</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 26</div>
+      <p class="v-text">"Mankasitraha ny fisian'Andriamanitra ao aminao, ary fiadanana no ho ao aminao."</p>
+      <div class="v-ref">Joba 22:21</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 27</div>
+      <p class="v-text">"Ny fiadanana no hataon'Andriamanitra fiaro antsika amin'ny zavatra rehetra."</p>
+      <div class="v-ref">Filipiana 4:9</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 28</div>
+      <p class="v-text">"Ny teny fikasana nomeny dia ny fiadanana; izany fiadanana izany dia tsy horavana."</p>
+      <div class="v-ref">Isaia 54:10</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 29</div>
+      <p class="v-text">"Ny Tompo no mpiaro ahy, na dia mandalo amin'ny lohasahan-tseriady aza aho."</p>
+      <div class="v-ref">Salamo 23:4</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card wide">
+      <div class="v-num">Versé 30</div>
+      <p class="v-text">"Izaho no Fiandry tsara; ny Fiandry tsara manolotra ny ainy hamonjy ny ondriny."</p>
+      <div class="v-ref">Jaona 10:11</div>
+      <span class="deco-q">"</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     THÈME 5 — VAVAKA (Teal)
+══════════════════════════════════════════ -->
+<section class="theme-section" id="sec-vavaka">
+  <div class="theme-title-block">
+    <span class="big-icon">🙏</span>
+    <h2>Vavaka</h2>
+    <p class="subtitle">Ny vavaka sy ny fifandraisana amin'Andriamanitra</p>
+    <span class="theme-count">Versé 30</span>
+  </div>
+  <div class="verse-grid">
+
+    <div class="verse-card wide">
+      <div class="v-num">Versé 01</div>
+      <p class="v-text">"Angataho, dia homena anareo; katsaho, dia ho hitanareo; dondony, dia hovohana ho anareo."</p>
+      <div class="v-ref">Matio 7:7</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 02</div>
+      <p class="v-text">"Mivavaha lalandava; misaora amin'izany rehetra izany; fa izany no sitrapon'Andriamanitra."</p>
+      <div class="v-ref">1 Tesaloniana 5:17–18</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 03</div>
+      <p class="v-text">"Ary izay rehetra angatahinao amin'ny fivavahana, ka inoanao, dia horaisina."</p>
+      <div class="v-ref">Matio 21:22</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 04</div>
+      <p class="v-text">"Koa amin'izany, aoka isika hanatona amin'ny toky ny seza fiandrianan'ny fahasoavana."</p>
+      <div class="v-ref">Hebreo 4:16</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 05</div>
+      <p class="v-text">"Raha mivavaka ianao, midira ao an-efitranonao, ka rehefa voarindrina ny varavaranao, mivavaha amin'ny Rainao Izay ao amin'ny mangingina."</p>
+      <div class="v-ref">Matio 6:6</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 06</div>
+      <p class="v-text">"Fa Jehovah haino ny fivavaky ny tsara fanahy."</p>
+      <div class="v-ref">Ohabolana 15:29</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 07</div>
+      <p class="v-text">"Ary ny fivavahana amin'ny finoana no hahavonjy ny marary."</p>
+      <div class="v-ref">Jakoba 5:15</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 08</div>
+      <p class="v-text">"Matokia ny Tompo amin'ny fonao rehetra; ary izy no hitondranao vavaka."</p>
+      <div class="v-ref">Ohabolana 3:5</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 09</div>
+      <p class="v-text">"Mitady ny Tompo raha hita Izy; miantso Azy raha akaiky Izy."</p>
+      <div class="v-ref">Isaia 55:6</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 10</div>
+      <p class="v-text">"Ny fanahin'ny olona marina no mivavaka amin'ny fahatokiana."</p>
+      <div class="v-ref">Ohabolana 28:9</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 11</div>
+      <p class="v-text">"Ary miantso Ahy amin'ny andro fahorianao ianao, ka hamonjy anao Aho."</p>
+      <div class="v-ref">Salamo 50:15</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 12</div>
+      <p class="v-text">"Izaho hamonjy ny vavaka rehetra nataon'ny mpanompoky."</p>
+      <div class="v-ref">1 Mpanjaka 8:28</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 13</div>
+      <p class="v-text">"Ny vavaka marina dia natao amin'ny fanahy sy ny fahamarinana."</p>
+      <div class="v-ref">Jaona 4:24</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 14</div>
+      <p class="v-text">"Fa raha mivavaka ireo mpino roa na telo, dia ao amin'izy ireo koa Aho."</p>
+      <div class="v-ref">Matio 18:20</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 15</div>
+      <p class="v-text">"Ny vavaka marina an'ny marina dia mahery."</p>
+      <div class="v-ref">Jakoba 5:16</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 16</div>
+      <p class="v-text">"Mivavaha ao amin'ny Fanahy lalandava, ary miambena amin'ny faharetana."</p>
+      <div class="v-ref">Efesiana 6:18</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 17</div>
+      <p class="v-text">"Ny fivavahana mahazo ny fitiavan'Andriamanitra."</p>
+      <div class="v-ref">Jakoba 4:8</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 18</div>
+      <p class="v-text">"Aza avela ho kivy ny vavahana; fa Andriamanitra tsy mihevitra faharitra."</p>
+      <div class="v-ref">Lioka 18:1</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 19</div>
+      <p class="v-text">"Ataovy aminy toy ny entana ny fiahianao, ka Izy no hikarakara anao."</p>
+      <div class="v-ref">1 Petera 5:7</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 20</div>
+      <p class="v-text">"Androany no angatahiko aminao hoe: omeo ahy ny hanoanana isan'andro."</p>
+      <div class="v-ref">Matio 6:11</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 21</div>
+      <p class="v-text">"Ny fivavahana dia fandraisana ny herin'Andriamanitra."</p>
+      <div class="v-ref">Salamo 65:2</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 22</div>
+      <p class="v-text">"Mivavaha amin'ny fon-tena; ary Andriamanitra Izay mahita ny mangingina no hamaly anao."</p>
+      <div class="v-ref">Matio 6:6</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 23</div>
+      <p class="v-text">"Miresaka Aminy amin'ny fahatokiana; fa Izy no hahazo ny hevitr'ny fonao."</p>
+      <div class="v-ref">Salamo 62:8</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 24</div>
+      <p class="v-text">"Ataovy izany vavaka izany: Rainay Izay any an-danitra, hohamasinina anie ny anaranao."</p>
+      <div class="v-ref">Matio 6:9</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 25</div>
+      <p class="v-text">"Ny fanahy matoky dia mankasitraka ny vavaka."</p>
+      <div class="v-ref">1 Petera 3:12</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 26</div>
+      <p class="v-text">"Mirosoa amin'Andriamanitra; dia hanatona anao Izy."</p>
+      <div class="v-ref">Jakoba 4:8</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 27</div>
+      <p class="v-text">"Ny vavaka no fiarovana lehibe amin'ny fanandramana rehetra."</p>
+      <div class="v-ref">Efesiana 6:18</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 28</div>
+      <p class="v-text">"Raha mivavaka ianao amin'ny finoanao, dia horaisina."</p>
+      <div class="v-ref">Matio 21:22</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 29</div>
+      <p class="v-text">"Mivavaka ny zanaky ny Tompo, ary ny Tompo mamaly azy."</p>
+      <div class="v-ref">Salamo 34:17</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card wide">
+      <div class="v-num">Versé 30</div>
+      <p class="v-text">"Miantso Ahy ianao ary hamaly anao Aho, ary hampahafantatra anao ny zavatra lehibe sy miafina izay tsy fantatrao."</p>
+      <div class="v-ref">Jeremia 33:3</div>
+      <span class="deco-q">"</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     THÈME 6 — FISAORANA (Amber)
+══════════════════════════════════════════ -->
+<section class="theme-section" id="sec-fisaorana">
+  <div class="theme-title-block">
+    <span class="big-icon">🌟</span>
+    <h2>Fisaorana</h2>
+    <p class="subtitle">Ny fisaorana sy fiderana an'Andriamanitra</p>
+    <span class="theme-count">Versé 30</span>
+  </div>
+  <div class="verse-grid">
+
+    <div class="verse-card wide">
+      <div class="v-num">Versé 01</div>
+      <p class="v-text">"Misaora an'i Jehovah, iantso ny anarany; ambarao amin'ny firenena ny asany."</p>
+      <div class="v-ref">Salamo 105:1</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 02</div>
+      <p class="v-text">"Miderà an'i Jehovah, fa tsara Izy; fa mandrakizay ny famindram-pony."</p>
+      <div class="v-ref">Salamo 118:1</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 03</div>
+      <p class="v-text">"Misaora an'i Jehovah, ry fanahiko; ary izay rehetra ao anatiko, misaora ny anarany masina."</p>
+      <div class="v-ref">Salamo 103:1</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 04</div>
+      <p class="v-text">"Mifalia lalandava; mivavaha tsy tàma; misaora amin'ny zava-drehetra."</p>
+      <div class="v-ref">1 Tesaloniana 5:16–18</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 05</div>
+      <p class="v-text">"Derào Jehovah, ry firenena rehetra; saorao Izy, ry olona rehetra."</p>
+      <div class="v-ref">Salamo 117:1</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 06</div>
+      <p class="v-text">"Manana fankasitrahana aho dia ho doka ny anarany; hankalazako Azy amin'ny fiderana."</p>
+      <div class="v-ref">Salamo 69:30</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 07</div>
+      <p class="v-text">"Ny fisaorana no fanatitra manome voninahitra Ahy."</p>
+      <div class="v-ref">Salamo 50:23</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 08</div>
+      <p class="v-text">"Ary inona no omen'ny olona ho lafin'ny famonjena azony? amin'izany no hiankohofako."</p>
+      <div class="v-ref">Salamo 116:12</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 09</div>
+      <p class="v-text">"Hankalaza ny anaranao lalandava aho; hanefa ny vodivoady ataoko isan'andro aho."</p>
+      <div class="v-ref">Salamo 61:8</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 10</div>
+      <p class="v-text">"Mankalazà an'Andriamanitra amin'ny tenanareo."</p>
+      <div class="v-ref">1 Korintiana 6:20</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 11</div>
+      <p class="v-text">"Ny zavatr'Andriamanitra rehetra dia soa; ary tsy misy tokony holaivina, raha raisina amin'ny fisaorana."</p>
+      <div class="v-ref">1 Timoty 4:4</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 12</div>
+      <p class="v-text">"Misaora an'i Jehovah aho amin'ny foko rehetra."</p>
+      <div class="v-ref">Salamo 9:1</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 13</div>
+      <p class="v-text">"Ho deraina Jehovah mandrakizay; Amena sy Amena."</p>
+      <div class="v-ref">Salamo 89:52</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 14</div>
+      <p class="v-text">"Ny fahasoavana sy ny famindram-po no manaraka ahy andro rehetra."</p>
+      <div class="v-ref">Salamo 23:6</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 15</div>
+      <p class="v-text">"Raha mihinana ianareo, na misotro, na manao na inona na inona, dia ataovy ho voninahitr'Andriamanitra izany."</p>
+      <div class="v-ref">1 Korintiana 10:31</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 16</div>
+      <p class="v-text">"Ho veloma ny fanahiko sy hisaora Anao; ary ny fanapahany no hanampy ahy."</p>
+      <div class="v-ref">Salamo 119:175</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 17</div>
+      <p class="v-text">"Aza mba manary fankasitrahana ny trangan'ny soa noraisinao."</p>
+      <div class="v-ref">Kolosiana 3:17</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 18</div>
+      <p class="v-text">"Niantso anao Aho tamin'ny andro fahorianao, ka namonjy anao."</p>
+      <div class="v-ref">Salamo 81:7</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 19</div>
+      <p class="v-text">"Ny fiderana an'Andriamanitra no voalohan'ny fanompoana marina."</p>
+      <div class="v-ref">Hebreo 13:15</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 20</div>
+      <p class="v-text">"Mihirà fiderana ho an'ny Tompo ao am-ponareo."</p>
+      <div class="v-ref">Efesiana 5:19</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 21</div>
+      <p class="v-text">"Dera sy hery ary fahasoavana no ho an'Andriamanitra mandrakizay."</p>
+      <div class="v-ref">Apokalypsy 7:12</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 22</div>
+      <p class="v-text">"Mankalazà an'Andriamanitra amin'ny tongotra miray."</p>
+      <div class="v-ref">Romana 15:6</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 23</div>
+      <p class="v-text">"Mihirà fiderana ho an'ny Tompo sy hira vaovao."</p>
+      <div class="v-ref">Salamo 149:1</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 24</div>
+      <p class="v-text">"Mahatoky Izy Izay niantso anareo."</p>
+      <div class="v-ref">1 Tesaloniana 5:24</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 25</div>
+      <p class="v-text">"Ny famindram-pon'i Jehovah dia tsy mba lany tamin'izany; ny famindrampona aminy dia tsy mitsahatra."</p>
+      <div class="v-ref">Fitomaniana 3:22</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 26</div>
+      <p class="v-text">"Ho deraina ny anaranao amin'ny firenena rehetra."</p>
+      <div class="v-ref">Malakia 1:11</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 27</div>
+      <p class="v-text">"Misaora ny Tompo isan'andro; ny fisaorana dia fiderana avy amin'ny fo."</p>
+      <div class="v-ref">Salamo 34:1</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 28</div>
+      <p class="v-text">"Koa ny fisaorana dia tantara ny asany soa."</p>
+      <div class="v-ref">Salamo 107:8</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card">
+      <div class="v-num">Versé 29</div>
+      <p class="v-text">"Ny vasokon'ny fisaorana dia manome voninahitra an'Andriamanitra."</p>
+      <div class="v-ref">Salamo 50:14</div>
+      <span class="deco-q">"</span>
+    </div>
+
+    <div class="verse-card wide">
+      <div class="v-num">Versé 30</div>
+      <p class="v-text">"Ny fahasoavan'ny Tompo Jesosy Kristy, ny fitiavan'Andriamanitra, ary ny firaisana amin'ny Fanahy Masina anie ho aminareo rehetra. Amena."</p>
+      <div class="v-ref">2 Korintiana 13:13</div>
+      <span class="deco-q">"</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ BACK TO TOP ══ -->
+<button id="back-top" aria-label="Hiverina eny ambony">↑</button>
+
+<footer>
+  <p>✝ &nbsp; <span>Teny ho amin'ny fiainana</span> &nbsp;•&nbsp; Fizarana teny mampahery @Tsiresiniaina&nbsp; ✝</p>
+</footer>
+
+<!-- ══════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════ -->
+<script>
+/* ── CANVAS PARTICLES ── */
+(function(){
+  const canvas = document.getElementById('canvas-bg');
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [];
+
+  function resize(){
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  function getAccent(){
+    return getComputedStyle(document.body).getPropertyValue('--theme-accent').trim();
+  }
+
+  class Particle {
+    constructor(){this.reset(true)}
+    reset(init=false){
+      this.x = Math.random()*W;
+      this.y = init ? Math.random()*H : H+10;
+      this.r = Math.random()*1.8+0.4;
+      this.speed = Math.random()*0.35+0.1;
+      this.alpha = Math.random()*0.5+0.1;
+      this.drift = (Math.random()-0.5)*0.3;
+    }
+    update(){
+      this.y -= this.speed;
+      this.x += this.drift;
+      if(this.y < -10) this.reset();
+    }
+    draw(accent){
+      ctx.beginPath();
+      ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+      ctx.fillStyle = accent;
+      ctx.globalAlpha = this.alpha;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+    }
+  }
+
+  for(let i=0;i<90;i++) particles.push(new Particle());
+
+  function loop(){
+    ctx.clearRect(0,0,W,H);
+    const accent = getAccent();
+    particles.forEach(p=>{p.update();p.draw(accent)});
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+
+/* ── THEME SWITCHING ── */
+const tabs = document.querySelectorAll('.tab-btn');
+const sections = document.querySelectorAll('.theme-section');
+const overlay = document.getElementById('theme-overlay');
+const body = document.body;
+
+function switchTheme(theme){
+  // Flash overlay
+  overlay.classList.add('flash');
+  setTimeout(()=>{
+    // Remove all theme classes
+    body.className = 'theme-'+theme;
+    // Show correct section
+    sections.forEach(s=>{
+      s.classList.toggle('active', s.id === 'sec-'+theme);
+    });
+    // Update tabs
+    tabs.forEach(t=>{
+      t.classList.toggle('active', t.dataset.theme === theme);
+    });
+    // Animate cards in new section
+    animateCards('#sec-'+theme);
+    overlay.classList.remove('flash');
+    window.scrollTo({top:0,behavior:'smooth'});
+  }, 200);
+}
+
+tabs.forEach(tab=>{
+  tab.addEventListener('click',()=> switchTheme(tab.dataset.theme));
+});
+
+/* ── CARD ENTRANCE ANIMATION ── */
+function animateCards(sectionSelector){
+  const cards = document.querySelectorAll(sectionSelector+' .verse-card');
+  cards.forEach((card,i)=>{
+    card.classList.remove('visible');
+    setTimeout(()=> card.classList.add('visible'), 60 + i*35);
+  });
+}
+// Animate first section on load
+window.addEventListener('DOMContentLoaded',()=>{
+  animateCards('#sec-fitiavana');
+});
+
+/* ── SCROLL PROGRESS BAR ── */
+const progressBar = document.getElementById('progress-bar');
+window.addEventListener('scroll',()=>{
+  const scrolled = window.scrollY;
+  const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = maxScroll > 0 ? (scrolled/maxScroll)*100 : 0;
+  progressBar.style.width = pct+'%';
+  // Back to top button
+  document.getElementById('back-top').classList.toggle('show', scrolled > 400);
+});
+
+/* ── BACK TO TOP ── */
+document.getElementById('back-top').addEventListener('click',()=>{
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+
+/* ── INTERSECTION OBSERVER (lazy card appearance on scroll) ── */
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting) e.target.classList.add('visible');
+  });
+},{threshold:0.08});
+document.querySelectorAll('.verse-card').forEach(c=> io.observe(c));
+</script>
+</body>
+</html>
